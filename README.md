@@ -52,7 +52,7 @@ end
 
 ## Usage
 
-1. In the class associated with the image invoke `mount_engine' method
+1.In the class associated with the image invoke `mount_engine' method
 
 This method takes a single parameter that defines an image prefix
 
@@ -63,8 +63,7 @@ class User
 
 end
 ```
-
-2. With the `profile_image` prefix you will need to define a `profile_image_original_url` method in your class. This method should define the original url of the image.
+2.With the `profile_image` prefix you will need to define a `profile_image_original_url` method in your class. This method should define the original url of the image.
 ```
 class User
 
@@ -72,8 +71,7 @@ class User
     "path/to/file"
   end
 ```
-
-3. To use the Imagizer Engine use the `profile_image_url()` method. This also takes an optional parameter that could be one of the versions defined in the config file
+3.To use the Imagizer Engine use the `profile_image_url()` method. This also takes an optional parameter that could be one of the versions defined in the config file
 
 ```
 user = User.new
