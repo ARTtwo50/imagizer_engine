@@ -1,0 +1,1 @@
+require 'imagizer_engine'
