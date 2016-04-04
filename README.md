@@ -52,26 +52,27 @@ end
 
 ## Usage
 
-1.In the class associated with the image invoke `mount_engine' method
+1. In the class that has the original image url, invoke `mount_imagizer_engine' method. This method takes two parameters: the image name and the method to be called to get the original url of the image.
 
-This method takes a single parameter that defines an image prefix
-
-```
+```ruby
 class User
-
-  mount_engine :profile_image
-
+  extend ImagizerEngine::Mount #this line is not necessary if you're using Rails with ActiveRecord 
+  mount_imagizer_engine :profile_image, :original_url_method_name
+  
 end
 ```
-2.With the `profile_image` prefix you will need to define a `profile_image_original_url` method in your class. This method should define the original url of the image.
-```
+
+2. Since we passed `original_url_method_name` as the method which contains the full image url, we should define it somehow. It can be a column if using on Rails/ActiveRecord for instance, or simply define:
+```ruby
 class User
 
-  def profile_image_original_url
-    "path/to/file"
+  def original_url_method_name
+    "http://s3aws.address/my_original_image.png"
   end
+end
 ```
-3.To use the Imagizer Engine use the `profile_image_url()` method. This also takes an optional parameter that could be one of the versions defined in the config file
+
+3. To use the Imagizer Engine use the `profile_image_url()` method. This also takes an optional parameter that could be one of the versions defined in the config file
 
 ```
 user = User.new
