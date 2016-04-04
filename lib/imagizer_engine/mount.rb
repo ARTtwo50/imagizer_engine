@@ -1,22 +1,12 @@
 module ImagizerEngine
   module Mount
-    def mount_engine(column)
-      mod = Module.new
-      include mod
-      mod.class_eval <<-RUBY, __FILE__, __LINE__+1
+    def mount_imagizer_engine(column, original_url_method)
 
-        def #{column}_url(version=nil)
-          raise NoMethodError, "define `#{column}_original_url' for #{self.inspect}" unless respond_to?(:#{column}_original_url)
-          to_imagizer_url(((#{column}_original_url)), version)         
-        end
+      self.send(:define_method, "#{column}_url") do |version=nil|
+        raise NoMethodError, "there's no instance method called #{original_url_method}" unless respond_to?(original_url_method)
+        ImagizerEngine::Url.new.to_url(self.send(original_url_method), version)
+      end
 
-        private
-
-        def to_imagizer_url(url, version)
-          Url.new.to_url(url, version)          
-        end
-        
-      RUBY
-    end    
+    end
   end
 end

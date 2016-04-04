@@ -6,8 +6,8 @@ describe ImagizerEngine do
     @class = Class.new
     @class.send(:extend, ImagizerEngine::Mount)
 
-    @class.mount_engine(:image)
-    @class.mount_engine(:cover)
+    @class.mount_imagizer_engine(:image, :image_original_url)
+    @class.mount_imagizer_engine(:cover, :image_original_url)
     @instance = @class.new
     @instance.define_singleton_method(:image_original_url) do
       "path/to/file.png"
@@ -46,7 +46,9 @@ describe ImagizerEngine do
   end
 
   it "should raise error if `cover_original_url is not defined" do
-    expect{@instance.cover_url}.to raise_error(NoMethodError)
+    @class.mount_imagizer_engine(:main, :undefined_method)
+    instance = @class.new
+    expect{instance.main_url}.to raise_error(NoMethodError)
   end
 
   it "should have `_url method defined" do
