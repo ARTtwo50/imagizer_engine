@@ -51,5 +51,18 @@ module ImagizerEngine
 
 end
 
-require "imagizer_engine/url"
+if defined?(Rails)
 
+  module ImagizerEngine
+    class Railtie < Rails::Railtie
+      
+      initializer "imagizer_engine.active_record" do
+        ActiveSupport.on_load :active_record do
+          require 'imagizer_engine/orm/activerecord'
+        end
+      end
+    end
+  end
+end
+
+require "imagizer_engine/url"
