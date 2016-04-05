@@ -3,14 +3,12 @@ require "imagizer_engine/mount"
 module ImagizerEngine
   extend self  
 
-  def public_ip
-    @public_ip ||= "0.0.0.0"
+  attr_accessor :host, :use_ssl
+
+  def host
+    @host ||= "0.0.0.0"
   end
 
-  def public_ip=(ip)
-    @public_ip = ip
-  end
- 
   def configure(&block)
     instance_eval(&block)
   end
