@@ -52,7 +52,7 @@ end
 
 ## Usage
 
-1. In the class that has the original image url, invoke `mount_imagizer_engine' method. This method takes two parameters: the image name and the method to be called to get the original url of the image.
+In the class that has the original image url, invoke `mount_imagizer_engine' method. This method takes two parameters: the image name and the method to be called to get the original url of the image.
 
 ```ruby
 class User
@@ -61,8 +61,8 @@ class User
   
 end
 ```
+Since we passed `:original_url_method_name` as the method which contains the full image url, we should define it somehow. It can be a column if using on Rails/ActiveRecord for instance, or simply define:
 
-2. Since we passed `original_url_method_name` as the method which contains the full image url, we should define it somehow. It can be a column if using on Rails/ActiveRecord for instance, or simply define:
 ```ruby
 class User
 
@@ -72,7 +72,7 @@ class User
 end
 ```
 
-3. To use the Imagizer Engine use the `profile_image_url()` method. This also takes an optional parameter that could be one of the versions defined in the config file
+To use the Imagizer Engine use the `profile_image_url()` method. This also takes an optional parameter that could be one of the versions defined in the config file
 
 ```
 user = User.new
@@ -81,7 +81,6 @@ user.profile_image_url(:cover) => "http://143.123.12.9/c/path/to/file?scale=2&cr
 
 ```
 
-4.Profit
 
 ## Contributing
 
