@@ -23,11 +23,11 @@ Or install it yourself as:
 Rails
 
 1. Create a config file like config/imagizer_engine.rb 
-2. Define the public ip found in your EC2 instance.
+2. Define the host (either IP or URL) found in your EC2 instance.
 3. Define all of the different versions available to use.
 4. Use the Imagizer API to configure each of the different versions. All of the Image API parameters are supported. http://demo.imagizercdn.com/doc/
 ```ruby
-ImagizerEngine.public_ip = "141.123.12.9"
+ImagizerEngine.host = "141.123.12.9"
 ImagizerEngine.configure do
   version :thumb, 
     :processes => {
