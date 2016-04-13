@@ -2,7 +2,7 @@ module ImagizerEngine
   class Url
     def to_url(url, version)
       protocol = ImagizerEngine.use_ssl ? 'https://' : 'http://'
-      protocol + ImagizerEngine.host + "/c/" + sanitized_url(url) + process_params(version)
+      protocol + ImagizerEngine.host + "/" + sanitized_url(url) + process_params(version)
     end
 
     private
