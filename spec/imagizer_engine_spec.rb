@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe ImagizerEngine do
 
-  before do
+  before(:each) do
+    ImagizerEngine.use_ssl = false
     @class = Class.new
     @class.send(:extend, ImagizerEngine::Mount)
 
@@ -13,7 +14,7 @@ describe ImagizerEngine do
       "path/to/file.png"
     end
 
-    ImagizerEngine.public_ip = "141.123.12.9"
+    ImagizerEngine.host = "141.123.12.9"
 
     ImagizerEngine.configure do
       version :thumb, 
@@ -45,6 +46,11 @@ describe ImagizerEngine do
     expect(@instance.image_url(:cover)).to eq("http://141.123.12.9/path/to/file.png?width=250&height=100&scale=2&crop=1,2,3,4")
   end
 
+  it "should send the correct url with https if use_ssl is set to true" do
+    ImagizerEngine.use_ssl = true
+    expect(@instance.image_url).to eq("https://141.123.12.9/path/to/file.png")
+  end
+
   it "should raise error if `cover_original_url is not defined" do
     @class.mount_imagizer_engine(:main, :undefined_method)
     instance = @class.new
@@ -55,9 +61,14 @@ describe ImagizerEngine do
     expect(@instance.respond_to?(:image_url)).to be true
   end
 
-  it "should allow configuring of #public_ip" do
-    ImagizerEngine.public_ip = "1.2.3.4"
-    expect(ImagizerEngine.public_ip).to eq("1.2.3.4")
+  it "should allow configuring of #host" do
+    ImagizerEngine.host = "1.2.3.4"
+    expect(ImagizerEngine.host).to eq("1.2.3.4")
+  end
+
+  it "should allow configuring of #host" do
+    ImagizerEngine.use_ssl = true
+    expect(ImagizerEngine.use_ssl).to eq(true)
   end
 
   it "should ignore keys that are not used in the Imagizer API" do
