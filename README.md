@@ -76,8 +76,8 @@ end
 
 ```
 user = User.new
-user.profile_image_url() => "http://143.123.12.9/c/path/to/file"
-user.profile_image_url(:cover) => "http://143.123.12.9/c/path/to/file?scale=2&crop1,2,3,4"
+user.profile_image_url() => "http://143.123.12.9/path/to/file"
+user.profile_image_url(:cover) => "http://143.123.12.9/path/to/file?scale=2&crop1,2,3,4"
 
 ```
 

@@ -1,7 +1,7 @@
 module ImagizerEngine
   class Url
     def to_url(url, version)
-      "http://" + ImagizerEngine.public_ip + "/c/" + sanitized_url(url) + process_params(version)
+      "http://" + ImagizerEngine.public_ip + "/" + sanitized_url(url) + process_params(version)
     end
 
     private
