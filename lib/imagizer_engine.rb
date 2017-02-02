@@ -27,7 +27,7 @@ module ImagizerEngine
 
   class Version
 
-    @@valid_config_keys = [:scale, :crop, :width, :height, :quality, :dpr, :filter, :force_jpg]
+    @@valid_config_keys = [:scale, :crop, :width, :height, :quality, :dpr, :filter, :flatten]
 
     def initialize(name, options)
       @name        = name.to_sym
