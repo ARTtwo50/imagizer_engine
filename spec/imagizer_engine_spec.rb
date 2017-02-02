@@ -39,16 +39,16 @@ describe ImagizerEngine do
   end
 
   it "should send the correct url without a version" do
-    expect(@instance.image_url).to eq("http://141.123.12.9/c/path/to/file.png")
+    expect(@instance.image_url).to eq("http://141.123.12.9/path/to/file.png")
   end
 
   it "should send the correct url with a version" do
-    expect(@instance.image_url(:cover)).to eq("http://141.123.12.9/c/path/to/file.png?width=250&height=100&scale=2&crop=1,2,3,4")
+    expect(@instance.image_url(:cover)).to eq("http://141.123.12.9/path/to/file.png?width=250&height=100&scale=2&crop=1,2,3,4")
   end
 
   it "should send the correct url with https if use_ssl is set to true" do
     ImagizerEngine.use_ssl = true
-    expect(@instance.image_url).to eq("https://141.123.12.9/c/path/to/file.png")
+    expect(@instance.image_url).to eq("https://141.123.12.9/path/to/file.png")
   end
 
   it "should raise error if `cover_original_url is not defined" do
@@ -72,7 +72,7 @@ describe ImagizerEngine do
   end
 
   it "should ignore keys that are not used in the Imagizer API" do
-    expect(@instance.image_url(:invalid)).to eq("http://141.123.12.9/c/path/to/file.png")
+    expect(@instance.image_url(:invalid)).to eq("http://141.123.12.9/path/to/file.png")
   end
   
 end
