@@ -1,5 +1,6 @@
 require 'net/http'
 require 'json'
+require 'active_support'
 
 module ImagizerEngine
   module Mount
@@ -18,8 +19,8 @@ module ImagizerEngine
       self.send(:define_method, "#{column}_metadata") do ||
         raise NoMethodError, "there's no instance method called #{original_url_method}" unless respond_to?(original_url_method)
         url = send("#{column}_metadata_url")
-        response = Net::HTTP.get(url)
-        JSON.parse(response)
+        response = Net::HTTP.get(URI(url))
+        JSON.parse(response).with_indifferent_access
       end
 
     end
