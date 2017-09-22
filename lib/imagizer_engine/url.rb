@@ -1,8 +1,8 @@
 module ImagizerEngine
   class Url
-    def to_url(url, version)
+    def to_url(url, version, metadata = nil)
       protocol = ImagizerEngine.use_ssl ? 'https://' : 'http://'
-      protocol + ImagizerEngine.host + "/" + sanitized_url(url) + process_params(version)
+      protocol + ImagizerEngine.host + "/" + sanitized_url(url) + process_params(version, metadata)
     end
 
     private
@@ -11,7 +11,8 @@ module ImagizerEngine
       url.sub(/^https?\:\/\/?([\da-z\.-]+)\.([a-z\.]{2,6}\/)/, '')
     end
 
-    def process_params(version)
+    def process_params(version, metadata = nil)
+      return "?meta=true" if metadata
       return "" if version.nil? || ImagizerEngine[version].nil?
       temp_params = serialized_processes(version)
       temp_params.empty? ? "" : "?" + temp_params

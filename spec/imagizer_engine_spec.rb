@@ -46,6 +46,10 @@ describe ImagizerEngine do
     expect(@instance.image_url(:cover)).to eq("http://141.123.12.9/path/to/file.png?width=250&height=100&scale=2&crop=1,2,3,4")
   end
 
+  it "should send the correct url with a meta=true" do
+    expect(@instance.image_metadata_url).to eq("http://141.123.12.9/path/to/file.png?meta=true")
+  end
+
   it "should send the correct url with https if use_ssl is set to true" do
     ImagizerEngine.use_ssl = true
     expect(@instance.image_url).to eq("https://141.123.12.9/path/to/file.png")

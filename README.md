@@ -80,7 +80,71 @@ user.profile_image_url() => "http://143.123.12.9/path/to/file"
 user.profile_image_url(:cover) => "http://143.123.12.9/path/to/file?scale=2&crop1,2,3,4"
 
 ```
-
+Also, there's a method that will return the image metadata parsed JSON: 
+```
+user.profile_image_metadata => {
+fileSize: 4428575,
+width: 4032,
+height: 3024,
+fileType: "jpeg",
+mimeType: "image/jpeg",
+hasAlpha: false,
+colorSpace: "srgb",
+exif: {
+ApertureValue: "2159/1273",
+BrightnessValue: "3497/314",
+ComponentsConfiguration: "1, 2, 3, 0",
+DateTime: "2017:04:02 16:08:21",
+DateTimeDigitized: "2017:04:02 16:08:21",
+DateTimeOriginal: "2017:04:02 16:08:21",
+ExifImageLength: 3024,
+ExifImageWidth: 4032,
+ExifOffset: 180,
+ExifVersion: "48, 50, 50, 49",
+ExposureBiasValue: "0/1",
+ExposureMode: 0,
+ExposureProgram: 2,
+ExposureTime: "1/3690",
+Flash: 24,
+FlashPixVersion: "48, 49, 48, 48",
+FNumber: "9/5",
+FocalLength: "399/100",
+FocalLengthIn35mmFilm: 28,
+ISOSpeedRatings: 20,
+Make: "Apple",
+MeteringMode: 5,
+Model: "iPhone 7",
+Orientation: 1,
+ResolutionUnit: 2,
+SceneCaptureType: 0,
+SceneType: 1,
+SensingMethod: 2,
+ShutterSpeedValue: "29588/2497",
+Software: 10.3,
+SubjectArea: "2015, 1511, 2217, 1330",
+SubSecTimeDigitized: 245,
+SubSecTimeOriginal: 245,
+WhiteBalance: 0,
+XResolution: "72/1",
+YResolution: "72/1"
+},
+faces: [ ],
+server: {
+host: "ip-10-0-1-213",
+ip: "10.0.1.213"
+},
+icc: {
+copyright: "Copyright Apple Inc., 2016",
+description: "Apple Wide Color Sharing Profile",
+manufacturer: "Apple Wide Color Sharing Profile",
+model: "Apple Wide Color Sharing Profile"
+},
+jpeg: {
+colorspace: 2,
+sampling-factor: "2x2,1x1,1x1"
+}
+}
+```
 
 ## Contributing
 

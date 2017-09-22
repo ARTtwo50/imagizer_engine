@@ -46,6 +46,14 @@ describe ImagizerEngine::ActiveRecord do
       expect(@artwork).to respond_to(:main_image_url)
     end
 
+    it "should respond to main_image_metadata" do
+      expect(@artwork).to respond_to(:main_image_metadata)
+    end
+
+    it "should respond to main_image_metadata_url" do
+      expect(@artwork).to respond_to(:main_image_metadata_url)
+    end
+
   end
 
 end
